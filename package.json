@@ -1,0 +1,33 @@
+{
+  "name": "betterMailto.js",
+  "version": "1.0.0",
+  "description": "A library for better mailto links.",
+  "main": "dist/bettermailto.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "test": "echo \"No tests specified\" && exit 0",
+    "format": "prettier --write \"src/**/*.js\" \"src/**/*.css\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/your-username/bettermailto.git"
+  },
+  "keywords": [
+    "email",
+    "mailto",
+    "obfuscation"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "prettier": "^3.2.5"
+  },
+  "devDependencies": {
+    "webpack": "^5.0.0",
+    "webpack-cli": "^4.0.0"
+  },
+  "prettier": {
+    "semi": true,
+    "singleQuote": true
+  }
+}
