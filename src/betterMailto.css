@@ -87,6 +87,14 @@
   transition: background-color 0.3s;
 }
 
+.bettermailto-copy-btn svg {
+  fill: #f3f4f6;
+  vertical-align: middle;
+  width: 20px; /* Set the width of the SVG icon */
+  height: 20px; /* Set the height of the SVG icon */
+  margin-right: 5px; /* Add some margin between the icon and text */
+}
+
 /* Hover effect */
 .bettermailto-copy-btn:hover {
   /* Darken the background color on hover */
