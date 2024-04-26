@@ -1,5 +1,5 @@
 /* CSS styles for mailto modal overlay */
-.mailto-modal-overlay {
+.bettermailto-modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -9,39 +9,104 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family:Arial, Helvetica, sans-serif;
 }
 
-.mailto-modal {
+.bettermailto-modal {
   background-color: #fff;
   padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   max-width: 80%;
   text-align: center;
+  position: relative; /* Added position relative for button positioning */
+  padding: 50px;
+  padding-bottom: 5px;
 }
 
-.mailto-modal p {
+.bettermailto-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #555;
+}
+
+.bettermailto-email-field {
+  margin-top: 50px;
+  position: relative;
+  margin-bottom: 50px;
+}
+
+.bettermailto-email-input {
+  width: calc(100% - 70px); /* Adjusted width for input */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Base styles for the button */
+.bettermailto-copy-btn {
+  /* Background color */
+  background-color: #4CAF50; /* Green */
+  /* Text color */
+  color: white;
+  /* Padding */
+  padding: 10px 20px;
+  /* Border */
+  border: none;
+  /* Border radius for rounded corners */
+  border-radius: 5px;
+  /* Cursor style on hover */
+  cursor: pointer;
+  /* Transition for smooth hover effect */
+  transition: background-color 0.3s;
+}
+
+/* Hover effect */
+.bettermailto-copy-btn:hover {
+  /* Darken the background color on hover */
+  background-color: #45a049; /* Darker green */
+}
+
+
+.bettermailto-handle-email-text {
+  font-size: 16px;
   margin-bottom: 10px;
+  color: #555;
 }
 
-.mailto-modal ul {
-  list-style: none;
-  padding: 0;
+.bettermailto-handle-options {
+  display: flex;
+  flex-direction: column; /* Changed to column layout */
+  align-items: center; /* Center items vertically */
 }
 
-.mailto-modal ul li {
-  margin-bottom: 10px;
-}
-
-.mailto-modal button {
-  padding: 8px 16px;
-  background-color: #007bff;
+.bettermailto-handle-options .bettermailto-btn {
+  width: 100%; /* Make all buttons the same width */
+  padding: 10px; /* Adjusted padding */
+  margin-bottom: 10px; /* Added margin between buttons */
+  background-color: #737373;
   color: #fff;
   border: none;
-  border-radius: 3px;
+  border-radius: 5px;
   cursor: pointer;
+  text-decoration: none;
 }
 
-.mailto-modal button:hover {
+.bettermailto-handle-options .bettermailto-btn:hover {
   background-color: #0056b3;
+}
+
+
+.bettermailto-powered {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #797979;
+  text-align: right;
+  margin-top: 40px;
+  margin-bottom: 20px;
 }

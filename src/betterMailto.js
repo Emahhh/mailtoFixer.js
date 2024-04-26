@@ -49,15 +49,25 @@ function openMailtoPopup(email) {
 
   // Modal content
   const modalContent = `
-			<div class="mailto-modal">
-				<p>How would you like to handle this email?</p>
-				<ul>
-					<li><a href="mailto:${email}">Open with default email client</a></li>
-					<li><a href="https://mail.google.com/mail/?view=cm&fs=1&to=${email}" target="_blank">Open with Gmail</a></li>
-					<li>Copy email address: <button onclick="copyToClipboard('${email}')">Copy</button></li>
-				</ul>
-				<button onclick="closeMailtoPopup()">Close</button>
-			</div>
+  <!-- HTML structure for mailto modal -->
+  <div class="bettermailto-modal-overlay">
+      <div class="bettermailto-modal">
+          <button class="bettermailto-close-btn" onclick="closeMailtoPopup()">&times;</button>
+          <div class="bettermailto-email-field">
+              <input type="text" class="bettermailto-email-input" value="${email}" readonly>
+              <button class="bettermailto-copy-btn" onclick="copyToClipboard('${email}')">Copy</button>
+            </div>
+          <hr></hr>
+          <p class="bettermailto-handle-email-text">Hi</p>
+          <div class="bettermailto-handle-options">
+              <a href="mailto:${email}" class="bettermailto-btn default-client">Open with Default Email Client</a>
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=${email}" target="_blank" class="bettermailto-btn gmail">Open with Gmail</a>
+              <a href="YOUR_OUTLOOK_LINK_HERE" target="_blank" class="bettermailto-btn outlook">Open with Outlook</a>
+          </div>
+          <p class="bettermailto-powered">Powered by betterMailto.js</p>
+      </div>
+  </div>
+  
 		`;
 
   // Set modal content
