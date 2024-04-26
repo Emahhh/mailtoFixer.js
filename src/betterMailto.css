@@ -52,9 +52,21 @@
   padding: 20px;
   border: 0px solid #898989;
   border-radius: 5px; /* Rounded corners on the left side */
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
   background-color: #f3f4f6;
+}
+
+@media screen and (max-width: 600px) {
+  .bettermailto-email-input {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .bettermailto-email-input {
+    font-size: 14px;
+  }
 }
 
 /* Button */
