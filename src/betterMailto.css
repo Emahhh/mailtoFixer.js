@@ -9,7 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family:Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .bettermailto-modal {
@@ -17,11 +17,13 @@
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-  max-width: 80%;
+  width: 90vw;
+  max-width: min(500px, 90%);
   text-align: center;
-  position: relative; /* Added position relative for button positioning */
-  padding: 50px;
+  position: relative;
+  padding: 30px;
   padding-bottom: 5px;
+  margin: 15px;
 }
 
 .bettermailto-close-btn {
@@ -35,43 +37,55 @@
   color: #555;
 }
 
+/* Container for email field and button */
 .bettermailto-email-field {
-  margin-top: 50px;
+  margin-top: 80px;
   position: relative;
-  margin-bottom: 50px;
+  flex-direction: column; /* Change to column direction */
+  align-items: center; /* Center items horizontally */
+  width: 100%;
 }
 
+/* Email input field */
 .bettermailto-email-input {
-  width: calc(100% - 70px); /* Adjusted width for input */
+  width: calc(100% - 42px);
   padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: 0px solid #898989;
+  border-radius: 5px; /* Rounded corners on the left side */
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #f3f4f6;
 }
 
-/* Base styles for the button */
+/* Button */
 .bettermailto-copy-btn {
-  /* Background color */
-  background-color: #4CAF50; /* Green */
-  /* Text color */
+  background-color: #18181a;
   color: white;
-  /* Padding */
+  margin-top: 15px;
   padding: 10px 20px;
-  /* Border */
+  width: 100%;
   border: none;
-  /* Border radius for rounded corners */
   border-radius: 5px;
-  /* Cursor style on hover */
   cursor: pointer;
-  /* Transition for smooth hover effect */
+  transition: background-color 0.3s;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 16px;
+  letter-spacing: 1px;
   transition: background-color 0.3s;
 }
 
 /* Hover effect */
 .bettermailto-copy-btn:hover {
   /* Darken the background color on hover */
-  background-color: #45a049; /* Darker green */
+  background-color: #49494b;
 }
 
+.bettermailto-modal hr {
+  border: none;
+  border-top: 1px solid #adadad;
+  margin: 50px 0;
+}
 
 .bettermailto-handle-email-text {
   font-size: 16px;
@@ -79,28 +93,33 @@
   color: #555;
 }
 
-.bettermailto-handle-options {
+.bettermailto-options {
   display: flex;
   flex-direction: column; /* Changed to column layout */
   align-items: center; /* Center items vertically */
+  margin: auto;
+  width: 65%;
 }
 
-.bettermailto-handle-options .bettermailto-btn {
+.bettermailto-options .bettermailto-btn {
   width: 100%; /* Make all buttons the same width */
   padding: 10px; /* Adjusted padding */
   margin-bottom: 10px; /* Added margin between buttons */
-  background-color: #737373;
+  background-color: #f4f4f5;
   color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 20px;
   cursor: pointer;
   text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  font-size: 16px;
+  transition: background-color 0.3s;
 }
 
-.bettermailto-handle-options .bettermailto-btn:hover {
-  background-color: #0056b3;
+.bettermailto-options .bettermailto-btn:hover {
+  background-color: #d5d5d5;
 }
-
 
 .bettermailto-powered {
   margin-top: 20px;
