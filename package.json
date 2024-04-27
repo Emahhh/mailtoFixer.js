@@ -1,6 +1,6 @@
 {
   "name": "mailto-fixer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A library for better mailto links.",
   "main": "/dist/mailtoFixer.min.js",
   "scripts": {
