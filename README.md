@@ -3,14 +3,18 @@
 
 ## Quick start
 
-Mailto links are a simple and effective way to send an email, but users feel frustrated when they click a mailto link and it opens their default email client, which they never wanted. `mailtofixer.js` fixes that.
+Mailto links are a simple and effective way to send an email, but some users feel frustrated when they click a mailto link and it opens their default email client, which they never wanted. `mailtofixer.js` fixes that.
 
-1. Include the `mailtoFixer.js` in your web page. You can do so by pasting this code snippet into the `<head>` section of your HTML:
+1. Include the `mailtoFixer.js` in your web page. You can do so by pasting this code snippet before the `</body>` tag in your HTML page:
 ```html
 <script src="https://cdn.jsdelivr.net/npm/mailto-fixer/dist/mailtoFixer.min.js"></script>
 ```
-1. Done! Now, every `mailto:` link in your page is automatically upgraded: when a user clicks on it, it opens a nice modal that gives users the choice to do what they actually want and expect.
-screenshot
+2. Done! Now, every `mailto:` link in your page is automatically upgraded: when a user clicks on it, it opens a nice modal that gives users the choice to do what they actually want and expect.
+<img width="652" alt="image" src="https://github.com/Emahhh/mailtoFixer.js/assets/27818313/a33a6b42-87ed-4364-83cf-95652a0e4597">
+
+<br>
+
+If you prefer, you can also use the npm package: `npm i mailto-fixer`.
 
 ## Want to avoid spam? Use the obfuscation feature
 In addition to the above, `mailtoFixer.js` also gives you the option to obfuscate your email to protect you from spam.
@@ -48,8 +52,9 @@ You can currently customize the look of the modal by overriding the CSS classes 
 
 Feel free to open a pull request to add more features!
 
-[] Support default subject and body for Gmail and Outlook.
-[] Adding dark mode.
-[] Add support for other email providers?
-[] Nicer UI?
+- [ ] Support default subject and body for Gmail and Outlook.
+- [ ] Adding dark mode.
+- [ ] Add support for other email providers?
+- [ ] Nicer UI?
+
 
