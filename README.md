@@ -2,7 +2,7 @@
 
 Mailto links are a simple and effective way to send an email, but some users feel frustrated when they click a mailto link and it opens their default email client, which they never wanted. `mailtofixer.js` fixes that by letting the user choose either to copy the address or open an email client.
 
-In addition, mailtoFixer.js can protect you from bot spammers looking for email addresses on the web.
+In addition, mailtoFixer.js can protect you from bot spammers constantly looking for email addresses on the web.
 
 <table>
   <tr>
