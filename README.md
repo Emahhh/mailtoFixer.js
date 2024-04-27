@@ -65,5 +65,6 @@ Feel free to open a pull request to add more features!
 - [ ] Add support for other email providers?
 - [ ] Nicer UI?
 - [ ] Add a "click to copy" hover effect?
+- [ ] Add localization
 
 
