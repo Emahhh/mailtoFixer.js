@@ -37,7 +37,7 @@ async function initializeMailtoFixer() {
     });
   });
 
-  console.log(`MailtoFixer loaded! ${mailtoLinks.length} mailto links found.`);
+  console.log(`MailtoFixer loaded! ${mailtoLinks.length} mailto links found and converted.`);
 }
 
 /**
@@ -53,10 +53,10 @@ async function openMailtoPopup(email) {
   const modalContent = `
 <div class="mailtofixer-modal-overlay">
   <div class="mailtofixer-modal">
-    <button class="mailtofixer-close-btn" onclick="closeMailtoPopup()">&times;</button>
+    <button class="mailtofixer-close-btn" data-action="close">&times;</button>
     <div class="mailtofixer-email-field">
       <input type="text" class="mailtofixer-email-input" value="${email}" readonly>
-      <button class="mailtofixer-copy-btn" onclick="mailtoFixerCopyToClipboard('${email}')">
+      <button class="mailtofixer-copy-btn" data-action="copy">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
           <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
           <path
@@ -98,42 +98,58 @@ async function openMailtoPopup(email) {
 
   // Append modal overlay to body
   document.body.appendChild(modalOverlay);
-}
 
-/**
- * Close the mailto popup modal.
- */
-async function closeMailtoPopup() {
-  const modalOverlay = document.querySelector('.mailto-modal-overlay');
-  if (modalOverlay) {
-    modalOverlay.remove();
+  // Add event listener to close button
+  modalOverlay.querySelector('.mailtofixer-close-btn').addEventListener('click', () => {
+    closeModal();
+  });
+
+  // Add event listener to copy button
+  modalOverlay.querySelector('.mailtofixer-copy-btn').addEventListener('click', () => {
+    mailtoFixerCopyToClipboard(email);
+  });
+
+  // Function to close the modal
+  function closeModal() {
+    document.body.removeChild(modalOverlay);
   }
-}
 
-/**
- * Copy the given text to the clipboard and provide user feedback.
- * @param {string} text The text to copy.
- */
-async function mailtoFixerCopyToClipboard(text) {
-  const textarea = document.createElement('textarea');
-  textarea.value = text;
-  document.body.appendChild(textarea);
-  textarea.select();
-  document.execCommand('copy');
-  document.body.removeChild(textarea);
 
-  // Save the previous text content of the button
-  const copyButton = document.querySelector('.mailtofixer-copy-btn');
-  const previousText = copyButton.querySelector(
-    '.mailtofixer-copy-text',
-  ).textContent;
+  /**
+   * Close the mailto popup modal.
+   */
+  async function closeMailtoPopup() {
+    const modalOverlay = document.querySelector('.mailto-modal-overlay');
+    if (modalOverlay) {
+      modalOverlay.remove();
+    }
+  }
 
-  // Update the text content of the button to display the feedback message
-  copyButton.querySelector('.mailtofixer-copy-text').textContent = 'Copied!';
+  /**
+   * Copy the given text to the clipboard and provide user feedback.
+   * @param {string} text The text to copy.
+   */
+  async function mailtoFixerCopyToClipboard(text) {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
 
-  // Restore the previous text content after a short delay
-  setTimeout(() => {
-    copyButton.querySelector('.mailtofixer-copy-text').textContent =
-      previousText;
-  }, 1500);
+    // Save the previous text content of the button
+    const copyButton = document.querySelector('.mailtofixer-copy-btn');
+    const previousText = copyButton.querySelector(
+      '.mailtofixer-copy-text',
+    ).textContent;
+
+    // Update the text content of the button to display the feedback message
+    copyButton.querySelector('.mailtofixer-copy-text').textContent = 'Copied!';
+
+    // Restore the previous text content after a short delay
+    setTimeout(() => {
+      copyButton.querySelector('.mailtofixer-copy-text').textContent =
+        previousText;
+    }, 1500);
+  }
 }

@@ -5,6 +5,7 @@
   "main": "dist/mailtofixer.js",
   "scripts": {
     "build": "webpack --mode production",
+    "dev": "webpack -- --watch",
     "test": "echo \"No tests specified\" && exit 0",
     "format": "prettier --write \"src/**/*.js\" \"src/**/*.css\""
   },
