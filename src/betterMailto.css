@@ -32,7 +32,7 @@
   right: 10px;
   background: none;
   border: none;
-  font-size: 20px;
+  font-size: 30px;
   cursor: pointer;
   color: #555;
 }
@@ -50,11 +50,11 @@
 .bettermailto-email-input {
   width: calc(100% - 42px);
   padding: 20px;
-  border: 0px solid #898989;
+  border: 0px solid #6e6e6e;
   border-radius: 5px; /* Rounded corners on the left side */
   font-size: 18px;
   font-weight: bold;
-  background-color: #f3f4f6;
+  background-color: #ebeced;
 }
 
 @media screen and (max-width: 600px) {
@@ -85,6 +85,12 @@
   font-size: 16px;
   letter-spacing: 1px;
   transition: background-color 0.3s;
+}
+
+.bettermailto-modal svg {
+  vertical-align: middle;
+  margin-right: 7px;
+  fill: #8d8d8d;
 }
 
 .bettermailto-copy-btn svg {
@@ -131,10 +137,12 @@
   border-radius: 20px;
   cursor: pointer;
   text-decoration: none;
-  color: #000;
+  text-align: start;
+  color: #4a4a4a;
   font-weight: bold;
   font-size: 16px;
   transition: background-color 0.3s;
+  padding-left: 20px;
 }
 
 .bettermailto-options .bettermailto-btn:hover {
