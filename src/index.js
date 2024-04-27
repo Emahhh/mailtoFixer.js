@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /**
  * Initialize MailtoFixer functionality.
- * Changes every mailto link and custom obfuscated link to open a popup with email client options.
+ * Changes every mailto link and custom obfuscated link to replace the content with the email address.
  */
 async function initializeMailtoFixer() {
   const mailtoLinks = document.querySelectorAll(
@@ -15,30 +15,47 @@ async function initializeMailtoFixer() {
   );
 
   mailtoLinks.forEach((link) => {
+
+    const email = getEmailFromLink(link);
+    if (!email) return;
+
+    // replace the event listener: instead of the default action, open the mailto popup
     link.addEventListener('click', (event) => {
       event.preventDefault();
-
-      if (
-        link.hasAttribute('href') &&
-        link.getAttribute('href').startsWith('mailto:')
-      ) {
-        // Extract email from traditional mailto link
-        const email = link.getAttribute('href').replace('mailto:', '');
-        openMailtoPopup(email);
-      } else {
-        // Extract email from custom obfuscated link
-        const username = link.getAttribute('data-mailtofixer-username');
-        const domain = link.getAttribute('data-mailtofixer-domain');
-        if (username && domain) {
-          const email = `${username}@${domain}`;
-          openMailtoPopup(email);
-        }
-      }
+      openMailtoPopup(email);
     });
+
+    // if this attribute is true, we also have to replace the text content with the actual email address
+    if (link.getAttribute('data-mailtofixer-replace-content') === 'true') {
+      link.textContent = email;
+    }
+
   });
 
   console.log(`MailtoFixer loaded! ${mailtoLinks.length} mailto links found and converted.`);
 }
+
+/**
+ * Extracts email from the given link.
+ * @param {HTMLElement} link - The link element.
+ * @returns {string} The email address extracted from the link.
+ */
+function getEmailFromLink(link) {
+  if (link.hasAttribute('href') && link.getAttribute('href').startsWith('mailto:')) {
+    // Extract email from traditional mailto link
+    return link.getAttribute('href').replace('mailto:', '');
+  } else {
+    // Extract email from custom obfuscated link
+    const username = link.getAttribute('data-mailtofixer-username');
+    const domain = link.getAttribute('data-mailtofixer-domain');
+    if (username && domain) {
+      return `${username}@${domain}`;
+    }
+  }
+  return null; // Return null if email cannot be extracted
+}
+
+
 
 /**
  * Open a popup within the page with options to handle the given email address.

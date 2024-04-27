@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/your-username/mailtofixer.git"
+    "url": "git+https://github.com/Emahhh/mailtoFixer.js.git"
   },
   "keywords": [
     "email",
@@ -21,9 +21,9 @@
   "author": "Your Name",
   "license": "MIT",
   "dependencies": {
-    "prettier": "^3.2.5"
   },
   "devDependencies": {
+    "prettier": "^3.2.5",
     "css-loader": "^7.1.1",
     "style-loader": "^4.0.0",
     "terser-webpack-plugin": "^5.3.10",

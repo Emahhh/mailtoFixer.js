@@ -5,13 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MailtoFixer Example</title>
-    <script src="/dist/mailtoFixer.js"></script>
+    <script src="/dist/mailtoFixer.min.js"></script>
 </head>
 
 <body>
     <a href="mailto:john@gmail.com">This is a mailto link</a>
     <br>
     <a href="#" data-mailtofixer-username="john" data-mailtofixer-domain="gmail.com">This is an obfuscated mailto link</a>
+    <br>
+    <a href="#" data-mailtofixer-username="john" data-mailtofixer-domain="gmail.com" data-mailtofixer-replace-content="true">This text will be replaced with the email address</a>
 </body>
 
 </html>
