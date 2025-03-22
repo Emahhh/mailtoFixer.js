@@ -1,16 +1,24 @@
 # mailto: links are outdated. mailtoFixer.js fixes that.
 
+Mailto links are a simple and effective way to send an email, but some users feel frustrated when they click a mailto link and it opens their default email client, which they never wanted. `mailtofixer.js` fixes that by letting the user choose either to copy the address or open an email client.
+
+In addition, mailtoFixer.js can protect you from bot spammers constantly looking for email addresses on the web.
+
+<table>
+  <tr>
+    <td align="center"><img src="https://github.com/Emahhh/mailtoFixer.js/assets/27818313/0e7e1c8d-b286-4ed8-b85b-d20d23dd548a" alt="without-demo"></td>
+    <td align="center"><img src="https://github.com/Emahhh/mailtoFixer.js/assets/27818313/7a3b0833-da1b-4d5a-99eb-799dd418f086" alt="with-demo"></td>
+  </tr>
+</table>
+
 
 ## Quick start
-
-Mailto links are a simple and effective way to send an email, but some users feel frustrated when they click a mailto link and it opens their default email client, which they never wanted. `mailtofixer.js` fixes that.
 
 1. Include the `mailtoFixer.js` in your web page. You can do so by pasting this code snippet before the `</body>` tag in your HTML page:
 ```html
 <script src="https://cdn.jsdelivr.net/npm/mailto-fixer/dist/mailtoFixer.min.js"></script>
 ```
 2. Done! Now, every `mailto:` link in your page is automatically upgraded: when a user clicks on it, it opens a nice modal that gives users the choice to do what they actually want and expect.
-<img width="652" alt="image" src="https://github.com/Emahhh/mailtoFixer.js/assets/27818313/a33a6b42-87ed-4364-83cf-95652a0e4597">
 
 <br>
 
@@ -57,5 +65,6 @@ Feel free to open a pull request to add more features!
 - [ ] Add support for other email providers?
 - [ ] Nicer UI?
 - [ ] Add a "click to copy" hover effect?
+- [ ] Add localization
 
 
