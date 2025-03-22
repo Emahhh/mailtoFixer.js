@@ -56,6 +56,7 @@
   font-size: 18px;
   font-weight: bold;
   background-color: #ebeced;
+  color: #18181a; /* Set text color */
 }
 
 @media screen and (max-width: 600px) {

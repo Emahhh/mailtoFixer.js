@@ -91,13 +91,13 @@ async function openMailtoPopup(email) {
           <path fill="black"
             d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2m-.4 4.25l-7.07 4.42c-.32.2-.74.2-1.06 0L4.4 8.25a.85.85 0 1 1 .9-1.44L12 11l6.7-4.19a.85.85 0 1 1 .9 1.44" />
         </svg>
-        Default email client</a>
+        Default email App</a>
       <a href="https://mail.google.com/mail/?view=cm&fs=1&to=${email}" target="_blank" class="mailtofixer-btn gmail">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
           <path fill="black"
             d="M20 18h-2V9.25L12 13L6 9.25V18H4V6h1.2l6.8 4.25L18.8 6H20m0-2H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2" />
         </svg>
-        Gmail</a>
+        Gmail web</a>
       <a href="https://outlook.live.com/mail/0/deeplink/compose?to=${email}" target="_blank" class="mailtofixer-btn outlook">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256">
           <path fill="black"
