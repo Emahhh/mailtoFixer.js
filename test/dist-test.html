@@ -1,19 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MailtoFixer Example</title>
-    <script src="/dist/mailtoFixer.min.js"></script>
+    <title>MailtoFixer Demo</title>
+    <!-- Use local dev build -->
+    <script src="../dist/mailtoFixer.min.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f3f4f6;
+            color: #111827;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        main {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            margin-top: 0;
+            color: #111827;
+        }
+        p {
+            color: #4b5563;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+        .link-group {
+            margin-bottom: 24px;
+            padding: 16px;
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+        }
+        .link-group h3 {
+            margin-top: 0;
+            margin-bottom: 12px;
+            font-size: 16px;
+            color: #374151;
+        }
+        a {
+            color: #4f46e5;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        code {
+            background-color: #e5e7eb;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #dc2626;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #111827;
+                color: #f9fafb;
+            }
+            main {
+                background-color: #1f2937;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+            }
+            h1 { color: #f9fafb; }
+            p { color: #d1d5db; }
+            .link-group {
+                background-color: #374151;
+                border-color: #4b5563;
+            }
+            .link-group h3 { color: #f9fafb; }
+            a { color: #818cf8; }
+            code {
+                background-color: #111827;
+                color: #fca5a5;
+            }
+        }
+    </style>
 </head>
-
 <body>
-    <a href="mailto:john@gmail.com">This is a mailto link</a>
-    <br>
-    <a href="#" data-mailtofixer-username="john" data-mailtofixer-domain="gmail.com">This is an obfuscated mailto link</a>
-    <br>
-    <a href="#" data-mailtofixer-username="john" data-mailtofixer-domain="gmail.com" data-mailtofixer-replace-content="true">This text will be replaced with the email address</a>
-</body>
+    <main>
+        <h1>MailtoFixer.js ✨</h1>
+        <p>This demo page shows how <code>mailto:</code> links are intercepted and handled by the library to prevent spam and provide a better UX.</p>
+        
+        <div class="link-group">
+            <h3>Standard Mailto Link</h3>
+            <p>A simple <code>&lt;a href="mailto:..."&gt;</code> that usually opens a local client directly.</p>
+            <a href="mailto:john.doe@example.com">Contact John Doe</a>
+        </div>
 
+        <div class="link-group">
+            <h3>Obfuscated Mailto Link</h3>
+            <p>Using <code>data-mailtofixer-username</code> and <code>data-mailtofixer-domain</code> to avoid spam bots.</p>
+            <a href="#" data-mailtofixer-username="hello" data-mailtofixer-domain="example.org">This is an obfuscated mailto link</a>
+        </div>
+
+        <div class="link-group">
+            <h3>Obfuscated with Replaced Content</h3>
+            <p>Using <code>data-mailtofixer-replace-content="true"</code> to automatically show the email here:</p>
+            <a href="#" data-mailtofixer-username="support" data-mailtofixer-domain="example.com" data-mailtofixer-replace-content="true">This text will be replaced</a>
+        </div>
+    </main>
+</body>
 </html>

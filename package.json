@@ -1,8 +1,11 @@
 {
   "name": "mailto-fixer",
-  "version": "1.0.2",
-  "description": "A library for better mailto links.",
-  "main": "/dist/mailtoFixer.min.js",
+  "version": "1.0.3",
+  "description": "A library for better mailto links. Give your users the choice to copy the address or open an email client.",
+  "main": "dist/mailtoFixer.min.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "webpack --mode production",
     "dev": "webpack -- --watch",
@@ -16,15 +19,22 @@
   "keywords": [
     "email",
     "mailto",
-    "obfuscation"
+    "obfuscation",
+    "spam",
+    "protection",
+    "ui",
+    "ux"
   ],
-  "author": "Your Name",
+  "author": "Emahhh",
   "license": "MIT",
-  "dependencies": {
+  "bugs": {
+    "url": "https://github.com/Emahhh/mailtoFixer.js/issues"
   },
+  "homepage": "https://github.com/Emahhh/mailtoFixer.js#readme",
+  "dependencies": {},
   "devDependencies": {
-    "prettier": "^3.2.5",
     "css-loader": "^7.1.1",
+    "prettier": "^3.2.5",
     "style-loader": "^4.0.0",
     "terser-webpack-plugin": "^5.3.10",
     "webpack": "^5.0.0",
