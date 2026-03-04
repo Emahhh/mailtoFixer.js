@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mailtoFixer.js - Better mailto links & Anti-spam</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="mailtoFixer.js converts frustrating mailto links into a beautiful, user-friendly modal. Prevent bot spam and give users the choice to copy or open their favorite email client.">
+    <meta name="keywords"
+        content="mailto, email link, javascript library, anti-spam, obfuscation, open email client, mailto popup">
+    <meta name="author" content="Emahhh">
+
+    <!-- Open Graph for Social Sharing -->
+    <meta property="og:title" content="mailtoFixer.js - Better mailto links">
+    <meta property="og:description"
+        content="A lightweight JavaScript library to fix frustrating mailto links and prevent email scraping bots.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://github.com/Emahhh/mailtoFixer.js">
+
+    <!-- Import standard font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Import mailtoFixer library (using unpkg or jsdelivr for production) -->
+    <!-- For github pages, assuming it's hosted from the /docs folder or root, we use the CDN to ensure it works beautifully -->
+    <script async src="https://cdn.jsdelivr.net/npm/mailto-fixer@1.0.3/dist/mailtoFixer.min.js"></script>
+
+    <style>
+        :root {
+            --bg-color: #fafafa;
+            --text-main: #111827;
+            --text-muted: #6b7280;
+            --accent: #4f46e5;
+            --accent-hover: #4338ca;
+            --card-bg: #ffffff;
+            --border: #e5e7eb;
+            --code-bg: #f3f4f6;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #0f1115;
+                --text-main: #f9fafb;
+                --text-muted: #9ca3af;
+                --accent: #6366f1;
+                --accent-hover: #818cf8;
+                --card-bg: #1f2937;
+                --border: #374151;
+                --code-bg: #111827;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 80px 24px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1.1;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--text-main) 0%, var(--text-muted) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: clamp(1.125rem, 2vw, 1.25rem);
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-top: 32px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 24px;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 15px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: white;
+            box-shadow: 0 4px 14px 0 rgba(79, 70, 229, 0.39);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(79, 70, 229, 0.23);
+        }
+
+        .btn-secondary {
+            background-color: var(--card-bg);
+            color: var(--text-main);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--text-muted);
+            background-color: var(--code-bg);
+        }
+
+        section {
+            margin-bottom: 64px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        .demo-box {
+            background-color: var(--code-bg);
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px dashed var(--border);
+            margin: 32px 0;
+        }
+
+        .demo-btn {
+            display: inline-block;
+            background-color: var(--text-main);
+            color: var(--bg-color);
+            padding: 14px 32px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s ease;
+        }
+
+        .demo-btn:hover {
+            transform: scale(1.05);
+        }
+
+        pre {
+            background-color: #111827;
+            color: #e5e7eb;
+            padding: 24px;
+            border-radius: 12px;
+            overflow-x: auto;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 24px;
+        }
+
+        code span.tag {
+            color: #fca5a5;
+        }
+
+        code span.attr {
+            color: #93c5fd;
+        }
+
+        code span.val {
+            color: #a7f3d0;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .feature-card {
+            padding: 24px;
+            border-radius: 16px;
+            background-color: var(--code-bg);
+            border: 1px solid var(--border);
+        }
+
+        .feature-icon {
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        .feature-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .feature-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        footer {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        @media (max-width: 640px) {
+            section {
+                padding: 24px;
+            }
+
+            .container {
+                padding: 40px 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <h1>mailtoFixer.js ✨</h1>
+            <p class="subtitle">Convert frustrating <code>mailto:</code> links into beautiful modals while protecting
+                your email from spam bots.</p>
+
+            <div class="cta-buttons">
+                <a href="#demo" class="btn btn-primary">Try Demo</a>
+                <a href="https://github.com/Emahhh/mailtoFixer.js" target="_blank" class="btn btn-secondary">
+                    <svg style="width:20px;height:20px;margin-right:8px" viewBox="0 0 24 24">
+                        <path fill="currentColor"
+                            d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5c.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34c-.46-1.16-1.11-1.47-1.11-1.47c-.91-.62.07-.6.07-.6c1 .07 1.53 1.03 1.53 1.03c.87 1.52 2.34 1.07 2.91.83c.09-.65.35-1.09.63-1.34c-2.22-.25-4.55-1.11-4.55-4.92c0-1.11.38-2 1.03-2.71c-.1-.25-.45-1.29.1-2.64c0 0 .84-.27 2.75 1.02c.79-.22 1.65-.33 2.5-.33c.85 0 1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02c.55 1.35.2 2.39.1 2.64c.65.71 1.03 1.6 1.03 2.71c0 3.82-2.34 4.66-4.57 4.91c.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z" />
+                    </svg>
+                    GitHub
+                </a>
+            </div>
+        </header>
+
+        <section id="demo">
+            <h2>👀 See it in Action</h2>
+            <p>Click the link below. Instead of launching a local desktop email client you never configured, you get a
+                clean, accessible choice.</p>
+
+            <div class="demo-box">
+                <!-- Using obfuscation format so it protects against bots too -->
+                <a href="#" class="demo-btn" data-mailtofixer-username="hello"
+                    data-mailtofixer-domain="example.com">Contact Us</a>
+            </div>
+        </section>
+
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">✨</div>
+                <div class="feature-title">Better UX</div>
+                <p class="feature-desc">Stop annoying users. Let them copy the address or choose Gmail/Outlook web
+                    natively.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🛡️</div>
+                <div class="feature-title">Anti-Spam</div>
+                <p class="feature-desc">Obfuscate your emails in HTML to block 99% of scraping bots automatically.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌗</div>
+                <div class="feature-title">Dark Mode Ready</div>
+                <p class="feature-desc">Zero configuration required. Intercepts system settings for perfect theming.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🪶</div>
+                <div class="feature-title">Lightweight</div>
+                <p class="feature-desc">No heavy dependencies. Pure vanilla JS and CSS designed for modern browsers.</p>
+            </div>
+        </div>
+
+        <section id="installation">
+            <h2>🚀 Quick Install</h2>
+            <p>Paste this single line of code right before the closing <code>&lt;/body&gt;</code> tag on your website:
+            </p>
+
+            <pre><code><span class="tag">&lt;script</span> <span class="attr">src=</span><span class="val">"https://cdn.jsdelivr.net/npm/mailto-fixer/dist/mailtoFixer.min.js"</span><span class="tag">&gt;&lt;/script&gt;</span></code></pre>
+
+            <p><strong>That's it!</strong> All your standard <code>&lt;a href="mailto:..."&gt;</code> links are
+                instantly upgraded.</p>
+        </section>
+
+        <section id="anti-spam">
+            <h2>🛡️ Anti-Spam Obfuscation</h2>
+            <p>To protect your email from bot scrapers, stop outputting <code>href="mailto:..."</code> in your HTML. Use
+                our custom data attributes instead:</p>
+
+            <pre><code><span class="tag">&lt;a</span> <span class="attr">href=</span><span class="val">"#"</span> 
+   <span class="attr">data-mailtofixer-username=</span><span class="val">"john"</span> 
+   <span class="attr">data-mailtofixer-domain=</span><span class="val">"gmail.com"</span><span class="tag">&gt;</span>
+   Email me here!
+<span class="tag">&lt;/a&gt;</span></code></pre>
+
+            <p>If you want the text inside the link to be automatically replaced with the generated email address,
+                simply add <code>data-mailtofixer-replace-content="true"</code> to the <code>&lt;a&gt;</code> tag.</p>
+        </section>
+
+        <footer>
+            <p>Built with ❤️ by <a href="https://github.com/Emahhh" target="_blank">Emahhh</a>. Licensed under MIT.</p>
+        </footer>
+    </div>
+</body>
+
+</html>

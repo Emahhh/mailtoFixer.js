@@ -1,70 +1,88 @@
-# mailto: links are outdated. mailtoFixer.js fixes that.
+<div align="center">
+  <h1>mailtoFixer.js ✨</h1>
+  <p><strong>Fixing mailto: links and preventing bot spam effectively.</strong></p>
 
-Mailto links are a simple and effective way to send an email, but some users feel frustrated when they click a mailto link and it opens their default email client, which they never wanted. `mailtofixer.js` fixes that by letting the user choose either to copy the address or open an email client.
+  <p>
+    <a href="https://www.npmjs.com/package/mailto-fixer"><img src="https://img.shields.io/npm/v/mailto-fixer.svg?style=flat-square" alt="npm version"></a>
+    <a href="https://github.com/Emahhh/mailtoFixer.js/blob/main/LICENSE"><img src="https://img.shields.io/npm/l/mailto-fixer.svg?style=flat-square" alt="License"></a>
+    <a href="https://unpkg.com/mailto-fixer/dist/mailtoFixer.min.js"><img src="https://badge-size.herokuapp.com/Emahhh/mailtoFixer.js/main/dist/mailtoFixer.min.js?compression=gzip&style=flat-square" alt="gzip size"></a>
+  </p>
 
-In addition, mailtoFixer.js can protect you from bot spammers constantly looking for email addresses on the web.
+  <h3><a href="https://emahhh.github.com/mailtoFixer.js">Visit the Live Demo & Website &rarr;</a></h3>
+</div>
+
+<br/>
+
+## The Problem
+Mailto links are a simple and effective way to send an email, but users feel frustrated when clicking a `mailto:` link automatically opens a default desktop email client (which is rarely configured). 
+
+**`mailtoFixer.js` fixes that.** It instantly converts your `mailto:` links into a beautiful modal, giving users the accessible choice to either copy the address, open their default client, or use web clients like Gmail/Outlook.
+
+In addition, mailtoFixer.js can **protect you from bot spammers** constantly looking for email addresses on the web using a simple automatic obfuscation technique.
+
+<br/>
 
 <table>
   <tr>
-    <td align="center"><img src="https://github.com/Emahhh/mailtoFixer.js/assets/27818313/0e7e1c8d-b286-4ed8-b85b-d20d23dd548a" alt="without-demo"></td>
-    <td align="center"><img src="https://github.com/Emahhh/mailtoFixer.js/assets/27818313/7a3b0833-da1b-4d5a-99eb-799dd418f086" alt="with-demo"></td>
+    <td align="center"><b>Without mailtoFixer</b></td>
+    <td align="center"><b>With mailtoFixer ✨</b></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="https://github.com/Emahhh/mailtoFixer.js/assets/27818313/0e7e1c8d-b286-4ed8-b85b-d20d23dd548a" alt="without-demo" width="300"></td>
+    <td align="center"><img src="https://github.com/Emahhh/mailtoFixer.js/assets/27818313/7a3b0833-da1b-4d5a-99eb-799dd418f086" alt="with-demo" width="300"></td>
   </tr>
 </table>
 
+## 🚀 Quick Install
 
-## Quick start
-
-1. Include the `mailtoFixer.js` in your web page. You can do so by pasting this code snippet before the `</body>` tag in your HTML page:
+1. Include `mailtoFixer.js` in your web page. Paste this code snippet before the `</body>` tag in your HTML:
 ```html
 <script src="https://cdn.jsdelivr.net/npm/mailto-fixer/dist/mailtoFixer.min.js"></script>
 ```
-2. Done! Now, every `mailto:` link in your page is automatically upgraded: when a user clicks on it, it opens a nice modal that gives users the choice to do what they actually want and expect.
 
-<br>
+2. **Done!**
+Now, every `mailto:` link in your page is automatically upgraded into a beautiful popup. It fully supports Dark Mode out of the box.
 
-If you prefer, you can also use the npm package: `npm i mailto-fixer`.
+<br/>
 
-## Want to avoid spam? Use the obfuscation feature
-In addition to the above, `mailtoFixer.js` also gives you the option to obfuscate your email to protect you from spam.
-Spammers often use parsers to look for email addresses in your pages' HTML. To avoid that, gives you the option to use a different syntax for obfuscating your email address.
+*(Optional) Install via npm:* `npm i mailto-fixer`
 
-How to obfuscate your email address?
-Instead of using this:
+---
+
+## 🛡️ Anti-Spam: Obfuscation Feature
+In addition to the UI upgrades, `mailtoFixer.js` allows you to obfuscate your email in your HTML to protect it from bots (which scan millions of websites for the `mailto:` string).
+
+Instead of outputting standard links:
 ```html
-<a href="mailto:john@gmail.com">This is a mailto link</a>
+<a href="mailto:john@gmail.com">Contact Us</a>
 ```
 
-Just use this equivalent syntax:
+You can use this equivalent syntax:
 ```html
-<a href="#" data-mailtofixer-username="john" data-mailtofixer-domain="gmail.com">This is an obfuscated mailto link</a>
+<a href="#" data-mailtofixer-username="john" data-mailtofixer-domain="gmail.com">Contact Us</a>
 ```
-If you also want the text inside the <a> tag to be replaced with the email address, just add the `data-mailtofixer-replace-content=true` attribute to the <a> tag. Example
+
+If you also want the text inside the `<a>` tag to be automatically replaced with the generated email address, add `data-mailtofixer-replace-content="true"`:
 
 ```html
-<a href="#" data-mailtofixer-username="john" data-mailtofixer-domain="gmail.com" data-mailtofixer-replace-content="true">This text will be replaced with the email address</a>
+<a href="#" 
+   data-mailtofixer-username="john" 
+   data-mailtofixer-domain="gmail.com" 
+   data-mailtofixer-replace-content="true">
+   This text will automatically become john@gmail.com!
+</a>
 ```
-<br>
-<br>
 
+## 🗺️ Customization & Roadmap
+You can easily customize the look of the modal by overriding the native classes in CSS (`.mailtofixer-*`). The component ships lightly.
 
-> *"Is this actually enough to protect me from spam?"*
-> 
-> You're right, a spammer could easily find your email address by evaluating the JavaScript in your page or by detecting this syntax. But most spammers are lazy: they don't evaluate JavaScript and are just looking for plain email addresses. This should be enough to protect you from the vast majority of spammers.
-
-## Customization
-
-You can currently customize the look of the modal by overriding the CSS classes defined in the `/src/styles.css` file.
-
-
-## Roadmap
-
-Feel free to open a pull request to add more features!
-
-- [ ] Support default subject and body for Gmail and Outlook.
-- [ ] Adding dark mode.
-- [ ] Add support for other email providers?
-- [ ] Nicer UI?
-- [ ] Add a "click to copy" hover effect?
+Roadmap:
+- [x] Dark mode support.
+- [x] Nicer UI & Animations
+- [x] Copy to clipboard native API
+- [x] Accessibility (A11y, Focus Management).
 - [ ] Add localization
+- [ ] Support default subject and body parameters.
 
-
+## 📄 License
+MIT License. Pull Requests welcome.
