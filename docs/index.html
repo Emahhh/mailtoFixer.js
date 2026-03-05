@@ -54,6 +54,30 @@
             }
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
+        @keyframes highlightPulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.4);
+                border-color: var(--accent);
+            }
+
+            50% {
+                box-shadow: 0 0 0 20px rgba(79, 70, 229, 0);
+                border-color: var(--accent);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(79, 70, 229, 0);
+            }
+        }
+
+        .highlight-pulse {
+            animation: highlightPulse 1.5s ease-out;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -87,6 +111,7 @@
             margin-bottom: 16px;
             background: linear-gradient(135deg, var(--text-main) 0%, var(--text-muted) 100%);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
@@ -288,13 +313,31 @@
 
         <section id="demo">
             <h2>👀 See it in Action</h2>
-            <p>Click the link below. Instead of launching a local desktop email client you never configured, you get a
+            <p>Click the links below. Instead of launching a local desktop email client you never configured, you get a
                 clean, accessible choice.</p>
 
-            <div class="demo-box">
-                <!-- Using obfuscation format so it protects against bots too -->
-                <a href="#" class="demo-btn" data-mailtofixer-username="hello"
-                    data-mailtofixer-domain="example.com">Contact Us</a>
+            <div class="demo-box" style="display: flex; flex-direction: column; gap: 24px; text-align: left;">
+                <div>
+                    <h4
+                        style="margin-bottom: 8px; color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                        1. Classic mailto: Link</h4>
+                    <p style="font-size: 0.95rem; margin-bottom: 12px; color: var(--text-muted);">Even simple text links
+                        work automatically without configuration:</p>
+                    <a href="mailto:john.doe@example.com"
+                        style="color: var(--accent); font-weight: 600; font-size: 1.1rem; text-decoration: underline; text-underline-offset: 4px;">john.doe@example.com</a>
+                </div>
+
+                <div style="height: 1px; background-color: var(--border); width: 100%;"></div>
+
+                <div>
+                    <h4
+                        style="margin-bottom: 8px; color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                        2. Obfuscated Anti-Spam Button</h4>
+                    <p style="font-size: 0.95rem; margin-bottom: 12px; color: var(--text-muted);">Safely hide your email
+                        from scraping bots using our data attributes:</p>
+                    <a href="#" class="demo-btn" data-mailtofixer-username="hello"
+                        data-mailtofixer-domain="example.com">Contact Us</a>
+                </div>
             </div>
         </section>
 
@@ -352,6 +395,19 @@
             <p>Built with ❤️ by <a href="https://github.com/Emahhh" target="_blank">Emahhh</a>. Licensed under MIT.</p>
         </footer>
     </div>
+
+    <script>
+        document.querySelector('a[href="#demo"]').addEventListener('click', function () {
+            const demoSection = document.getElementById('demo');
+
+            // Add pulse highlight effect after a short delay (for smooth scroll to catch up)
+            setTimeout(() => {
+                demoSection.classList.remove('highlight-pulse');
+                void demoSection.offsetWidth; // Trigger reflow to restart animation
+                demoSection.classList.add('highlight-pulse');
+            }, 400);
+        });
+    </script>
 </body>
 
 </html>
