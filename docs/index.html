@@ -222,6 +222,98 @@
             margin-bottom: 24px;
         }
 
+        .code-container {
+            position: relative;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #9ca3af;
+            padding: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(8px);
+            z-index: 10;
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            transform: translateY(-1px);
+        }
+
+        .copy-btn:active {
+            transform: translateY(0);
+        }
+
+        .copy-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .copy-btn .check-icon {
+            display: none;
+            color: #34d399;
+        }
+
+        .copy-btn.copied {
+            border-color: #059669;
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .copy-btn.copied .copy-icon {
+            display: none;
+        }
+
+        .copy-btn.copied .check-icon {
+            display: block;
+            animation: scaleIn 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .copy-btn .tooltip {
+            position: absolute;
+            top: -36px;
+            right: 0;
+            background: #111827;
+            color: white;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            opacity: 0;
+            transform: translateY(4px);
+            transition: all 0.2s ease;
+            pointer-events: none;
+            border: 1px solid var(--border);
+            white-space: nowrap;
+        }
+
+        .copy-btn.copied .tooltip {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         code span.tag {
             color: #fca5a5;
         }
@@ -289,7 +381,8 @@
             }
         }
     </style>
-    <script defer src="https://cloud.umami.is/script.js" data-website-id="e857ea53-29a3-4e75-832f-4190d132b9e0"></script>
+    <script defer src="https://cloud.umami.is/script.js"
+        data-website-id="e857ea53-29a3-4e75-832f-4190d132b9e0"></script>
 </head>
 
 <body>
@@ -371,7 +464,21 @@
             <p>Paste this single line of code right before the closing <code>&lt;/body&gt;</code> tag on your website:
             </p>
 
-            <pre><code><span class="tag">&lt;script</span> <span class="attr">src=</span><span class="val">"https://cdn.jsdelivr.net/npm/mailto-fixer/dist/mailtoFixer.min.js"</span><span class="tag">&gt;&lt;/script&gt;</span></code></pre>
+            <div class="code-container">
+                <button class="copy-btn" aria-label="Copy code">
+                    <span class="tooltip">Copied!</span>
+                    <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </button>
+                <pre><code><span class="tag">&lt;script</span> <span class="attr">src=</span><span class="val">"https://cdn.jsdelivr.net/npm/mailto-fixer/dist/mailtoFixer.min.js"</span><span class="tag">&gt;&lt;/script&gt;</span></code></pre>
+            </div>
 
             <p><strong>That's it!</strong> All your standard <code>&lt;a href="mailto:..."&gt;</code> links are
                 instantly upgraded.</p>
@@ -382,11 +489,25 @@
             <p>To protect your email from bot scrapers, stop outputting <code>href="mailto:..."</code> in your HTML. Use
                 our custom data attributes instead:</p>
 
-            <pre><code><span class="tag">&lt;a</span> <span class="attr">href=</span><span class="val">"#"</span> 
+            <div class="code-container">
+                <button class="copy-btn" aria-label="Copy code">
+                    <span class="tooltip">Copied!</span>
+                    <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </button>
+                <pre><code><span class="tag">&lt;a</span> <span class="attr">href=</span><span class="val">"#"</span> 
    <span class="attr">data-mailtofixer-username=</span><span class="val">"john"</span> 
    <span class="attr">data-mailtofixer-domain=</span><span class="val">"gmail.com"</span><span class="tag">&gt;</span>
    Email me here!
 <span class="tag">&lt;/a&gt;</span></code></pre>
+            </div>
 
             <p>If you want the text inside the link to be automatically replaced with the generated email address,
                 simply add <code>data-mailtofixer-replace-content="true"</code> to the <code>&lt;a&gt;</code> tag.</p>
@@ -407,6 +528,19 @@
                 void demoSection.offsetWidth; // Trigger reflow to restart animation
                 demoSection.classList.add('highlight-pulse');
             }, 400);
+        });
+
+        // Copy button logic
+        document.querySelectorAll('.copy-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const code = btn.parentElement.querySelector('code').innerText;
+                navigator.clipboard.writeText(code).then(() => {
+                    btn.classList.add('copied');
+                    setTimeout(() => {
+                        btn.classList.remove('copied');
+                    }, 2000);
+                });
+            });
         });
     </script>
 </body>
